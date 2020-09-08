@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+. ./setenv_keystore.sh
+
+# Create etc/ssl dir
+if [ ! -d ../etc/ssl ]; then
+   mkdir -p ../etc/ssl
+fi
+
+#
+# Import the member trusted certificate into the client's trust keystore
+#
+keytool -import -file $CLIENT_TRUSTED_CERTIFICATE_FILE -alias $CLIENT_ALIAS -keystore $TRUST_KEYSTORE_FILE -storepass $ALIAS -storetype pkcs12
+
+echo "Client Trusted Certificate: $CLIENT_TRUSTED_CERTIFICATE_FILE"
+echo "    Member Truste Keystore: $TRUST_KEYSTORE_FILE"

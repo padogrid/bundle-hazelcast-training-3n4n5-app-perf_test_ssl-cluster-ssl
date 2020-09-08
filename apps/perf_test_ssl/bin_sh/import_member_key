@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+
+. ./setenv_keystore.sh
+
+# Create etc/ssl dir
+if [ ! -d ../etc/ssl ]; then
+   mkdir -p ../etc/ssl
+fi
+
+#
+# Import member's private key into the client's keystore
+#
+#keytool -importkeystore -srckeystore ../../../clusters/ssl/etc/ssl/member.keystore -destkeystore ../etc/ssl/client.keystore -srcstoretype pkcs12 -deststoretype pkcs12 -srcstorepass member -deststorepass client -srcalias member -destalias member -srckeypass member -destkeypass client -noprompt
+keytool -importkeystore \
+-srckeystore $MEMBER_KEYSTORE_FILE \
+-destkeystore $KEYSTORE_FILE \
+-srcstoretype pkcs12 \
+-deststoretype pkcs12 \
+-srcstorepass $MEMBER_KEYSTORE_PASSWORD \
+-deststorepass $KEYSTORE_PASSWORD \
+-srcalias $MEMBER_ALIAS \
+-destalias $MEMBER_ALIAS \
+-srckeypass $MEMBER_KEYSTORE_PASSWORD \
+-destkeypass $KEYSTORE_PASSWORD \
+-noprompt
