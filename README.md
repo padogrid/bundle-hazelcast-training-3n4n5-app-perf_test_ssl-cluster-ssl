@@ -1,84 +1,152 @@
-# Hazelcast Bundle Template
+# IMDG Cluster: ssl
 
-This bundle serves as a template for creating a new Hazelcast onlne bundle.
+As part of the TLS/SSL lab of Hazelcast Operations Training, the `ssl` cluster has been preconfigured to enable SSL. It contains scripts to create both private and trust keystores that contain both member and client keys and certificates.
 
 ## Installing Bundle
 
 ```bash
-install_bundle -download bundle-hazelcast-template
+install_bundle -download bundle-hazelcast-training-3-app-perf_test_ssl-cluster-ssl
 ```
 
 ## Use Case
 
-If you are creating a new online bundle, then you can use this template to create your bundle repo. It includes all the required files with marked annotations for you to quickly start developing a new online bundle. Please follow the steps shown below.
+*This bundle is for training use only.* As part of the TLS/SSL lab, this bundles includes a cluster and an app preconfigured with private and trust keytstores.
 
-## 1. Create Repo
+![SSL Cluster Diagram](/images/ssl-cluster.jpg)
 
-Select **Use this template** button in the upper right coner to create your repo. Make sure to follow the bundle naming conventions described in the following link.
+## Creating Keystores
 
-## 2. Checkout Repo in Workspace
+To create keystores, follow the instructions in the Hazelcast Operations Training slide deck or the steps in the order shown below. 
 
-```bash
-install_bundle -download -workspace <bundle-repo-name>
-switch_workspace <bundle-repo-name>
-```
-
-## 3. Update Files
-
-Update the files came with the template repo.
-
-- `pom.xml`
-- `assembly-descriptor.xml`
-- `.gitignore`
-- `README_HEADER.md`
-- `README.md` (this file)
-- `README.TEMPLATE` (Remove it when done. See instructions below.)
-
-### 3.1. pom.xml
-
-The `pom.xml` file contains instructions annocated with **@template**. Search **@template** and add your bundle specifics there.
-
-### 3.2 assembly-descriptor.xml
-
-This file creates a tarball that will be deployed when the user executes the `install_bundle -download` command. Search **@template** and add your bundle specfics there.
-
-### 3.3 .gitignore
-
-The `.gitignore` file lists workspace specific files to be excluded from getting checked in. Edit `.gitignore` and add new exludes or remove existing excludes.
-
-```bash
-vi .gitignore
-```
-
-Make sure to comment out your workspace directories (components) so that they can be included by `git`.
+### 1. Member Keystore
 
 ```console
-...
-# PadoGrid workspace directories
-apps
-clusters
-docker
-k8s
-pods
-...
+# Switch cluster and cd into the bin_sh directory.
+# All commands must be executed inside the bin_sh directory
+# with the './' prefix.
+switch_cluster ssl; cd bin_sh
+
+# Create member keystore to store private keys.
+./create_member_keystore
+
+# List private keys in the member keystore.
+# You should see one (1) key.
+./list_member_keystore
 ```
 
-## 3.4. README_HEADER.md
+### 2. Member Trust Keystore
 
-Enter a short description of your bundle in the `README_HEADER.md` file. This file content is displayed when you execute the `show_bundle -header` command.
+``` console
+# Create client’s trust keystore (Export the trusted certificate
+# and import it in the trust keystore)
+./create_member_trust_keystore
 
-## 3.5. READEME.md (this file)
-
-Replace `README.md` with the README_TEMPLATE.md file. Make sure to remove `README_TEMPLATE.md` after you have replaced `READEME.md` with it.
-
-```bash
-cp README_TEMPLATE.md README.md
-git rm README_TEMPLATE.md
+# List the trusted certificates  in the trust keystore you just created.
+./list_member_keystore
 ```
 
-Update the `READEME.md` file by following the instructions in that file.
+### 3. Client Keystore
 
-## 4. Develop and Test Bundle
+```console
+# Change directory to the perf_test_ssl app
+cd_app perf_test_ssl; cd bin_sh
 
-You can freely make changes and test the bundle in the workspace. When you are ready to check in, you simply commit the changes using the `git commit` command. For new files, you will need to select only the ones that you want to check in using the `git status -u` and `git diff` commands. For those files that you do not want to check in, you can list them in the `.gitignore` file so that they do not get checked in accidentally.
+# Create the client’s private keystore
+./create_client_keystore
+```
 
+### 4. Client Trust Keystore
+
+```console
+# Create client’s trust keystore
+# (Export the trusted certificate and import it in the trust keystore)
+./create_client_trust_keystore
+
+# List the trusted certificates  in the trust keystore you just created.
+# You should see one (1) trusted certificate.
+./list_client_trust_keystore
+
+# Import the member’s trusted certificate into the client’s
+# trust keystore.
+./import_member_trusted_certificate
+
+# List the client’s trust keystore.
+# You should now see two (2) trusted certificates (member and client).
+./list_client_trust_keystore
+```
+
+### 5. Import Client Key to Member Keystore
+
+```console
+# Change directory to the cluster’s bin_sh directory 
+cd_cluster ssl; cd bin_sh
+
+# Import client’s private key to member’s keystore
+./import_client_key
+
+# List the keys in the member’s keystore
+# You should see 2 private keys (member and client)
+./list_member_keystore
+
+```
+
+### 6. Import Client Trusted Certificate
+
+```console
+# Import the client’s trusted certificate into the member’s 
+# trust keystore.
+./import_client_trusted_certificate
+
+# List client’s trust keystore
+# You should see 2 trusted certificates (member and client)
+./list_member_trust_keystore
+```
+
+## Starting Cluster
+
+```console
+# First, add members. Bundles do not include members.
+add_member
+add_member
+
+# Start cluster.
+start_cluster
+
+# See the log file to see SSL messages.
+show_log
+```
+
+## Running Client
+
+```console
+# Change directory to the perf_test’s bin_sh directory
+cd_app perf_test_ssl; cd bin_sh
+
+# Run the perf_test ingestion program
+./test_ingestion -run
+
+# See SSL outputs
+```
+
+## Starting Management Center
+
+Management Center has also been configured with TLS/SSL using the member's keystore. After starting the MC, obtain the HTTPS URL by running `show_mc`. 
+
+```console
+start_mc
+show_mc
+```
+
+URL: https://localhost:8443/hazelcast-mancenter
+
+:exclamation: **Chrome Users:** Chrome might block you completely from visiting the Management Center site due to the self-signed certifcate. In that case, try clicking on any where on the page and typing **thisisunsafe**.
+
+## Browser Notes
+
+Note that depending on your browser, `localhost` in URL may not work. Use the host name instead if it fails. The private key has been generated with your host name as one of domain names.
+
+## Tearing Down
+
+```console
+stop_cluster
+```

@@ -1,1 +1,1 @@
-This bundle serves as a template for creating a new Hazelcast bundle. Run `show_bundle bundle-hazelcast-template` to see instructions.
+As part of the TLS/SSL lab of Hazelcast Operations Training, the ssl cluster has been preconfigured to enable SSL. It contains scripts to create both private and trust keystores that contain both member and client keys and certificates.

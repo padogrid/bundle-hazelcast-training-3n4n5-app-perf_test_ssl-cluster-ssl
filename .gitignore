@@ -22,11 +22,19 @@ lib
 plugins
 
 # PadoGrid workspace directories
-apps
-clusters
+#apps
+#clusters
 docker
 k8s
 pods
+
+# Cluster
+run
+clusters/ssl/etc/ssl
+
+# App
+results
+apps/perf_test_ssl/etc/ssl
 
 # Bundle specifics
 archive
