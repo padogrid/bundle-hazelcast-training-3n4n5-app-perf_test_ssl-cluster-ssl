@@ -139,14 +139,15 @@ show_mc
 
 URL: https://localhost:8443/hazelcast-mancenter
 
-:exclamation: **Chrome Users:** Chrome might block you completely from visiting the Management Center site due to the self-signed certifcate. In that case, try clicking on any where on the page and typing **thisisunsafe**.
-
 ## Browser Notes
 
 Note that depending on your browser, `localhost` in URL may not work. Use the host name instead if it fails. The private key has been generated with your host name as one of domain names.
+
+:exclamation: **Chrome Users:** Chrome might block you completely from visiting the Management Center site due to the self-signed certifcate. In that case, try clicking on any where on the page and typing **thisisunsafe**.
 
 ## Tearing Down
 
 ```console
 stop_cluster
+stop_mc
 ```
