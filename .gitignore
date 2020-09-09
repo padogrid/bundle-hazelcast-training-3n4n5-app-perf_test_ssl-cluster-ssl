@@ -46,7 +46,12 @@ lib
 desktop
 setenv.sh0
 build
+clusters/ssl/etc/hazelcast.xml
 apps/perf_test_ssl/etc/hazelcast-client-blue-mc.xml
 apps/perf_test_ssl/etc/hazelcast-client-green-mc.xml
 apps/perf_test_ssl/etc/hazelcast-client-mc.xml
 apps/perf_test_ssl/etc/v4/hazelcast-client-mc.xml
+apps/perf_test_ssl/etc/hazelcast-client-blue.xml
+apps/perf_test_ssl/etc/hazelcast-client-failover.xml
+apps/perf_test_ssl/etc/hazelcast-client-green.xml
+apps/perf_test_ssl/etc/hazelcast-client.xml

@@ -34,8 +34,6 @@ if [ "$HELP" == "true" ]; then
    exit
 fi
 
-# Place the correct version of Hazelcast config file in etc/
-cp $APP_DIR/etc/hazelcast-client-$HAZELCAST_MAJOR_VERSION_NUMBER.xml $APP_DIR/etc/hazelcast-client.xml
 
 #
 # Create hazelcast-client-mc.xml for 4.x. To be uploaded to the browser.
@@ -47,9 +45,12 @@ if [[ $OS_NAME == CYGWIN* ]]; then
 else
    APP_DIR2="${APP_DIR//\//\/}"
 fi
-if [ $HAZELCAST_MAJOR_VERSION_NUMBER -eq 3 ]; then
-   cp $APP_DIR/etc/v3/* $APP_DIR/etc/
-else
+
+# Copy all
+cp $APP_DIR/etc/v$HAZELCAST_MAJOR_VERSION_NUMBER/* $APP_DIR/etc/
+
+# Management specifics for Hazelcast 4.x
+if [ $HAZELCAST_MAJOR_VERSION_NUMBER -ge 4 ]; then
    sed -e "s/\${keyStore}/$APP_DIR2\/etc\/ssl\/client.keystore/" \
        -e "s/\${keyStorePassword}/client/" \
        -e "s/\${keyStoreType}/pkcs12/" \
@@ -71,6 +72,5 @@ else
        -e "s/\${trustStorePassword}/client/" \
        -e "s/\${trustStoreType}/pkcs12/" \
        $APP_DIR/etc/v4/hazelcast-client-green.xml > $APP_DIR/etc/hazelcast-client-green-mc.xml
-   cp $APP_DIR/etc/v4/hazelcast-client-failover.xml $APP_DIR/etc/
 fi 
 echo "App initialized."
