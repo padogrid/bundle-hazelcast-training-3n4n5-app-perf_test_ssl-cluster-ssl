@@ -12,7 +12,7 @@ install_bundle -download bundle-hazelcast-training-3n4-app-perf_test_ssl-cluster
 
 *This bundle is for training use only.* As part of the TLS/SSL lab, this bundles includes a cluster and an app preconfigured with private and trust keytstores.
 
-![SSL Cluster Diagram](/images/ssl-cluster.jpg)
+![SSL Cluster Diagram](images/ssl-cluster.jpg)
 
 ## Creating Keystores
 
