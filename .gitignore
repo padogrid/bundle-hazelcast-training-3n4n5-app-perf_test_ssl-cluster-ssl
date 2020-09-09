@@ -13,6 +13,9 @@ buildNumber.properties
 # vi
 *.swp
 
+# macOS
+.DS_Store
+
 # PadoGrid workspace
 /.addonenv.sh
 /initenv.sh
@@ -43,3 +46,7 @@ lib
 desktop
 setenv.sh0
 build
+apps/perf_test_ssl/etc/hazelcast-client-blue-mc.xml
+apps/perf_test_ssl/etc/hazelcast-client-green-mc.xml
+apps/perf_test_ssl/etc/hazelcast-client-mc.xml
+apps/perf_test_ssl/etc/v4/hazelcast-client-mc.xml

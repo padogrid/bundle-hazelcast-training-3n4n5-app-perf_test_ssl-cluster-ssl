@@ -32,8 +32,6 @@ JAVA_OPTS="$JAVA_OPTS \
 #
 # Set Management Center Java options, i.e., -Dhazelcast.mc.forceLogoutOnMultipleLogin=true
 #
-#MC_JAVA_OPTS=
-
 # Enable Management Center TLS with the member's keystores
 MC_JAVA_OPTS="-Dhazelcast.mc.tls.enabled=true \
 -Dhazelcast.mc.tls.keyStore=$CLUSTER_DIR/etc/ssl/member.keystore \

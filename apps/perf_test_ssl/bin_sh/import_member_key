@@ -10,7 +10,6 @@ fi
 #
 # Import member's private key into the client's keystore
 #
-#keytool -importkeystore -srckeystore ../../../clusters/ssl/etc/ssl/member.keystore -destkeystore ../etc/ssl/client.keystore -srcstoretype pkcs12 -deststoretype pkcs12 -srcstorepass member -deststorepass client -srcalias member -destalias member -srckeypass member -destkeypass client -noprompt
 keytool -importkeystore \
 -srckeystore $MEMBER_KEYSTORE_FILE \
 -destkeystore $KEYSTORE_FILE \

@@ -18,7 +18,19 @@ install_bundle -download bundle-hazelcast-training-3-app-perf_test_ssl-cluster-s
 
 To create keystores, follow the instructions in the Hazelcast Operations Training slide deck or the steps in the order shown below. 
 
-### 1. Member Keystore
+### 1. Initialize Environment
+
+First, intialize your bundle environment to your workspace's Hazelcast version. The followin scripts places the correct configuration files to their repestive `etc/` directories.
+
+```bash
+switch_cluster ssl; cd bin_sh
+./init_cluster
+
+cd_app perf_test_ssl; cd bin_sh
+./init_app
+```
+
+### 2. Member Keystore
 
 ```console
 # Switch cluster and cd into the bin_sh directory.
@@ -34,7 +46,7 @@ switch_cluster ssl; cd bin_sh
 ./list_member_keystore
 ```
 
-### 2. Member Trust Keystore
+### 3. Member Trust Keystore
 
 ``` console
 # Create client’s trust keystore (Export the trusted certificate
@@ -45,7 +57,7 @@ switch_cluster ssl; cd bin_sh
 ./list_member_keystore
 ```
 
-### 3. Client Keystore
+### 4. Client Keystore
 
 ```console
 # Change directory to the perf_test_ssl app
@@ -55,7 +67,7 @@ cd_app perf_test_ssl; cd bin_sh
 ./create_client_keystore
 ```
 
-### 4. Client Trust Keystore
+### 5. Client Trust Keystore
 
 ```console
 # Create client’s trust keystore
@@ -75,7 +87,7 @@ cd_app perf_test_ssl; cd bin_sh
 ./list_client_trust_keystore
 ```
 
-### 5. Import Client Key to Member Keystore
+### 6. Import Client Key to Member Keystore
 
 ```console
 # Change directory to the cluster’s bin_sh directory 
@@ -90,7 +102,7 @@ cd_cluster ssl; cd bin_sh
 
 ```
 
-### 6. Import Client Trusted Certificate
+### 7. Import Client Trusted Certificate
 
 ```console
 # Import the client’s trusted certificate into the member’s 
@@ -102,7 +114,7 @@ cd_cluster ssl; cd bin_sh
 ./list_member_trust_keystore
 ```
 
-## Starting Cluster
+## 8. Start Cluster
 
 ```console
 # First, add members. Bundles do not include members.
@@ -116,7 +128,7 @@ start_cluster
 show_log
 ```
 
-## Running Client
+## 9. Run Client
 
 ```console
 # Change directory to the perf_test’s bin_sh directory
@@ -128,7 +140,7 @@ cd_app perf_test_ssl; cd bin_sh
 # See SSL outputs
 ```
 
-## Starting Management Center
+## 10. Start Management Center
 
 Management Center has also been configured with TLS/SSL using the member's keystore. After starting the MC, obtain the HTTPS URL by running `show_mc`. 
 
@@ -145,7 +157,24 @@ Note that depending on your browser, `localhost` in URL may not work. Use the ho
 
 :exclamation: **Chrome Users:** Chrome might block you completely from visiting the Management Center site due to the self-signed certifcate. In that case, try clicking on any where on the page and typing **thisisunsafe**.
 
-## Tearing Down
+### Hazelcast Management Center 4.x
+
+If you are running  Hazelcast Management Center 4.x, then you must upload the `etc/hazelcast-client-mc.xml` configuration file to the Management Center. This file has been generated when you executed the `init_app` script in the beginng of the tutorial. This file configures SSL settings with the absolute paths to the client keystore files that we generated earlier.
+
+```
+cd_app perf_test_ssl
+cat etc/hazelcast-client-mc.xml
+```
+
+In the browser, upload the above file as follows:
+
+- Select **Manage Cluster** from the left pane.
+- Selecct **Add Cluster Config** 
+- Select the **Upload Config File** button.
+- Drag and dop the `hazelcast-client-mc.xml` file into the dotted box.
+- Select the **Save** button to save the file.
+
+## Teardown
 
 ```console
 stop_cluster

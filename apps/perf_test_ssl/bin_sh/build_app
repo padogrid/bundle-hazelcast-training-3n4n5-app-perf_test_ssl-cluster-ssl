@@ -20,9 +20,9 @@ SCRIPT_DIR="$(cd -P -- "$(dirname -- "$0")" && pwd -P)"
 . $SCRIPT_DIR/.addonenv.sh
 
 EXECUTABLE="`basename $0`"
-REPO_NAME=hazelcast-desktop
 
 if [ "$HELP" == "true" ]; then
+   echo ""
    echo "Usage:"
    echo "   ./$EXECUTABLE [-clean] [-?]"
    echo ""

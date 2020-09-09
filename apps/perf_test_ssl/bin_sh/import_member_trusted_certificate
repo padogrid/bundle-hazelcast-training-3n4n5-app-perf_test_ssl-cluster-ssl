@@ -8,7 +8,7 @@ if [ ! -d ../etc/ssl ]; then
 fi
 
 # Import the member trusted certificate into the client's trust keystore
-keytool -import -file $MEMBER_TRUSTED_CERTIFICATE_FILE -alias $MEMBER_ALIAS -keystore $TRUST_KEYSTORE_FILE -storepass $ALIAS -storetype pkcs12
+keytool -import -file $MEMBER_TRUSTED_CERTIFICATE_FILE -alias $MEMBER_ALIAS -keystore $TRUST_KEYSTORE_FILE -storepass $ALIAS -storetype pkcs12 -noprompt
 
 echo "Member Trusted Certificate: $MEMBER_TRUSTED_CERTIFICATE_FILE"
 echo "    Member Truste Keystore: $TRUST_KEYSTORE_FILE"
