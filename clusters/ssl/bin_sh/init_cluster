@@ -23,7 +23,7 @@ EXECUTABLE="`basename $0`"
 
 if [ "$HELP" == "true" ]; then
    echo "Usage:"
-   echo "   ./$EXECUTABLE [-clean] [-?]"
+   echo "   ./$EXECUTABLE [-?]"
    echo ""
    echo "   Initializes this cluster. After a build (if required), this script should be executed before running"
    echo "   other scripts to intialize the cluster environment."

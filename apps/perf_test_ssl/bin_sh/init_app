@@ -24,7 +24,7 @@ EXECUTABLE="`basename $0`"
 if [ "$HELP" == "true" ]; then
    echo ""
    echo "Usage:"
-   echo "   ./$EXECUTABLE [-clean] [-?]"
+   echo "   ./$EXECUTABLE [-?]"
    echo ""
    echo "   Initializes this app. After a build (if required), this script should be executed before running"
    echo "   other scripts to intialize the app environment."
