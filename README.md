@@ -25,9 +25,6 @@ First, intialize your bundle environment to your workspace's Hazelcast version. 
 ```bash
 switch_cluster ssl; cd bin_sh
 ./init_cluster
-
-cd_app perf_test_ssl; cd bin_sh
-./init_app
 ```
 
 ### 2. Member Keystore
