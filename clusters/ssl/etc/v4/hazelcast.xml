@@ -44,8 +44,7 @@ IMPORTANT:
 	the following line. -->
 	<!-- <cluster-name>${hazelcast-addon.cluster-name}</cluster-name> -->
  
-	<management-center>
-		${hazelcast-addon.management-center}
+    <management-center scripting-enabled="true">
 	</management-center>
 
 	<user-code-deployment enabled="true">
