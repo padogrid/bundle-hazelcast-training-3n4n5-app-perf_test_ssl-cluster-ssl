@@ -43,7 +43,7 @@ if [[ $OS_NAME == CYGWIN* ]]; then
    APP_DIR2="$(cygpath -w $APP_DIR)"
    APP_DIR2="${APP_DIR2//\\/\\\\\\\\}"
 else
-   APP_DIR2="${APP_DIR//\//\/}"
+   APP_DIR2="${APP_DIR//\//\\/}"
 fi
 
 # Copy all
