@@ -20,9 +20,14 @@ To create keystores, follow the instructions in the Hazelcast Operations Trainin
 
 ### 1. Initialize Environment
 
-First, intialize your bundle environment to your workspace's Hazelcast version. The followin scripts places the correct configuration files to their repestive `etc/` directories.
+First, intialize your bundle environment to your workspace's Hazelcast version. The followin scripts places the correct configuration files to their respective `etc/` directories.
 
 ```bash
+# Initialize client
+cd_app perf_test_ssl; cd bin_sh
+./init_app
+
+# Initialize cluster
 switch_cluster ssl; cd bin_sh
 ./init_cluster
 ```

@@ -36,9 +36,4 @@ fi
 # Place the correct version of Hazelcast config files in etc/
 cp $APP_DIR/etc/v$HAZELCAST_MAJOR_VERSION_NUMBER/* $APP_DIR/etc/
 
-# Place the correct version of Hazelcast client config files in perf_test_ssl
-if [ -d $APPS_DIR/perf_test_ssl/etc/v$HAZELCAST_MAJOR_VERSION_NUMBER ]; then
-   cp $APPS_DIR/perf_test_ssl/etc/v$HAZELCAST_MAJOR_VERSION_NUMBER/* $APPS_DIR/perf_test_ssl/etc/
-fi
-
 echo "Cluster initialized."
