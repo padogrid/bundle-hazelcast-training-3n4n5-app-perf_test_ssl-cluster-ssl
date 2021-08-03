@@ -45,7 +45,7 @@ switch_cluster ssl; cd bin_sh
 
 # List private keys in the member keystore.
 # You should see one (1) key.
-./list_member_keystore
+./list_member_trust_keystore
 ```
 
 ### 3. Member Trust Keystore
