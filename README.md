@@ -51,7 +51,7 @@ switch_cluster ssl; cd bin_sh
 ### 3. Member Trust Keystore
 
 ``` console
-# Create client’s trust keystore (Export the trusted certificate
+# Create members’s trust keystore (Export the trusted certificate
 # and import it in the trust keystore)
 ./create_member_trust_keystore
 
