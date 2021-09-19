@@ -159,9 +159,9 @@ Note that depending on your browser, `localhost` in URL may not work. Use the ho
 
 :exclamation: **Chrome Users:** Chrome might block you completely from visiting the Management Center site due to the self-signed certifcate. In that case, try clicking on any where on the page and typing **thisisunsafe**.
 
-### Hazelcast Management Center 4.x
+### Hazelcast Management Center 4.x and 5.x
 
-If you are running  Hazelcast Management Center 4.x, then you must upload the `etc/hazelcast-client-mc.xml` configuration file to the Management Center. This file has been generated when you executed the `init_app` script in the beginning of the tutorial. This file configures SSL settings with the absolute paths to the client keystore files that we generated earlier.
+If you are running  Hazelcast Management Center 4.x or 5.x, then you must upload the `etc/hazelcast-client-mc.xml` configuration file to the Management Center. This file has been generated when you executed the `init_app` script in the beginning of the tutorial. This file configures SSL settings with the absolute paths to the client keystore files that we generated earlier.
 
 ```
 cd_app perf_test_ssl
