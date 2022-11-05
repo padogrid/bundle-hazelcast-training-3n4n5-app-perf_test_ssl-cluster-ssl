@@ -16,6 +16,9 @@ buildNumber.properties
 # macOS
 .DS_Store
 
+# Jupyter
+.ipynb_checkpoints
+
 # PadoGrid workspace
 /.addonenv.sh
 /initenv.sh
@@ -58,3 +61,4 @@ apps/perf_test_ssl/etc/hazelcast-client-blue.xml
 apps/perf_test_ssl/etc/hazelcast-client-failover.xml
 apps/perf_test_ssl/etc/hazelcast-client-green.xml
 apps/perf_test_ssl/etc/hazelcast-client.xml
+.gitignore0

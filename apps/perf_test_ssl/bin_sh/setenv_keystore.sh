@@ -10,7 +10,3 @@ MEMBER_KEYSTORE_PASSWORD=member
 MEMBER_ALIAS=member
 MEMBER_TRUSTED_CERTIFICATE_FILE=../../../clusters/ssl/etc/ssl/member.cer
 MEMBER_KEYSTORE_FILE=../../../clusters/ssl/etc/ssl/member.keystore
-
-
-
-

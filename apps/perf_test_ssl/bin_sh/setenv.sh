@@ -69,3 +69,8 @@ JAVA_OPTS="$JAVA_OPTS \
 -Djavax.net.debug=SSL"
 
 # CLASSPATH="$CLASSPATH"
+
+# Set Hazelcast version to download it via the 'build_app' script. This value overrides
+# the workspace product (Hazelcast) version. This variable should be set if your
+# application does not require Hazelcast locally installed.
+# HAZELCAST_VERSION=
