@@ -3,7 +3,7 @@
 ---
 
 <!-- Platforms -->
-[![Host OS](https://github.com/padogrid/padogrid/wiki/images/padogrid-host-os.drawio.svg)](https://github.com/padogrid/padogrid/wiki/Platform-Host-OS) [![VM](https://github.com/padogrid/padogrid/wiki/images/padogrid-vm.drawio.svg)](https://github.com/padogrid/padogrid/wiki/Platform-VM) [![Docker](https://github.com/padogrid/padogrid/wiki/images/padogrid-docker.drawio.svg)](https://github.com/padogrid/padogrid/wiki/Platform-Docker) [![Kubernetes](https://github.com/padogrid/padogrid/wiki/images/padogrid-kubernetes.drawio.svg)](https://github.com/padogrid/padogrid/wiki/Platform-Kubernetes)
+[![PadoGrid 1.x](https://github.com/padogrid/padogrid/wiki/images/padogrid-padogrid-1.x.drawio.svg)](https://github.com/padogrid/padogrid/wiki/Platform-PadoGrid-1.x) [![Host OS](https://github.com/padogrid/padogrid/wiki/images/padogrid-host-os.drawio.svg)](https://github.com/padogrid/padogrid/wiki/Platform-Host-OS) [![VM](https://github.com/padogrid/padogrid/wiki/images/padogrid-vm.drawio.svg)](https://github.com/padogrid/padogrid/wiki/Platform-VM) [![Docker](https://github.com/padogrid/padogrid/wiki/images/padogrid-docker.drawio.svg)](https://github.com/padogrid/padogrid/wiki/Platform-Docker) [![Kubernetes](https://github.com/padogrid/padogrid/wiki/images/padogrid-kubernetes.drawio.svg)](https://github.com/padogrid/padogrid/wiki/Platform-Kubernetes)
 
 # IMDG Cluster: ssl
 
@@ -31,11 +31,11 @@ First, intialize your bundle environment to your workspace's Hazelcast version. 
 
 ```bash
 # Initialize client
-cd_app perf_test_ssl; cd bin_sh
+cd_app perf_test_ssl/bin_sh
 ./init_app
 
 # Initialize cluster
-switch_cluster ssl; cd bin_sh
+switch_cluster ssl/bin_sh
 ./init_cluster
 ```
 
@@ -45,7 +45,7 @@ switch_cluster ssl; cd bin_sh
 # Switch cluster and cd into the bin_sh directory.
 # All commands must be executed inside the bin_sh directory
 # with the './' prefix.
-switch_cluster ssl; cd bin_sh
+switch_cluster ssl/bin_sh
 
 # Create member keystore to store private keys.
 ./create_member_keystore
@@ -70,7 +70,7 @@ switch_cluster ssl; cd bin_sh
 
 ```console
 # Change directory to the perf_test_ssl app
-cd_app perf_test_ssl; cd bin_sh
+cd_app perf_test_ssl/bin_sh
 
 # Create the client’s private keystore
 ./create_client_keystore
@@ -126,9 +126,8 @@ cd_cluster ssl; cd bin_sh
 ## 8. Start Cluster
 
 ```console
-# First, add members. Bundles do not include members.
-add_member
-add_member
+# First, add two (2) members. Bundles do not include members.
+add_member -count 2
 
 # Start cluster.
 start_cluster
@@ -141,7 +140,7 @@ show_log
 
 ```console
 # Change directory to the perf_test’s bin_sh directory
-cd_app perf_test_ssl; cd bin_sh
+cd_app perf_test_ssl/bin_sh
 
 # Run the perf_test ingestion program
 ./test_ingestion -run
